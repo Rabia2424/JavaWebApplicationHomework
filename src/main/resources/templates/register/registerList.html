@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registrations</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4 mb-4">Student Registrations</h1>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th>Student Name</th>
+            <th>Lecture Name</th>
+            <th>Register Date</th>
+            <th>Semester</th>
+            <th>Operations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterate over registrations and display each one -->
+        <th:block th:each="registration : ${registrations}">
+            <tr>
+                <td th:text="${registration.student.name}"></td>
+                <td th:text="${registration.lecture.name}"></td>
+                <td th:text="${registration.register_date}"></td>
+                <td th:text="${registration.semester}"></td>
+                <td style="white-space: nowrap">
+                    <a class="btn btn-warning btn-sm"
+                        th:href="@{/register/update/{id}(id=${registration.id})}">Update</a>
+                    <a class="btn btn-danger btn-sm"
+                        th:href="@{/register/delete/{id}(id=${registration.id})}">Delete</a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

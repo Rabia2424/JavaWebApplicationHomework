@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Student Lecture Registration</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* İsteğe bağlı özelleştirmeler buraya eklenebilir */
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="my-4">Update Student Lecture Registration Form</h2>
+    <form action="#" th:action="@{/register/update/{id}(id=${registerView.id})}" th:object="${registerView}" method="post">
+        <div class="form-group">
+            <label for="student">Select Student:</label>
+            <select id="student" class="form-control" name="student">
+                <option value="">-- Select Student --</option>
+                <th:block th:each="student : ${students}">
+                    <option th:value="${student.id}" th:text="${student.name}" th:selected="${student.id == registerView.student.id}"></option>
+                </th:block>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="lecture">Select Lecture:</label>
+            <select id="lecture" class="form-control" name="lecture">
+                <option value="">-- Select Lecture --</option>
+                <th:block th:each="lecture : ${lectures}">
+                    <option th:value="${lecture.id}" th:text="${lecture.name}" th:selected="${lecture.id == registerView.lecture.id}"></option>
+                </th:block>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="register_date">Register Date:</label>
+            <input type="date" id="register_date" class="form-control" name="register_date" th:value="${registerView.register_date}">
+        </div>
+
+        <div class="form-group">
+            <label for="semester">Semester:</label>
+            <input type="text" id="semester" class="form-control" name="semester" th:value="${registerView.semester}">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a class="btn btn-secondary" href="/register">Cancel</a>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
